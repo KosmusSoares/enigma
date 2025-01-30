@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Simples</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 2rem;
+            font-family: monospace;
+        }
+        .input-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            font-family: monospace;
+            background-color: black;
+            color: lime;
+            border: 1px solid lime;
+        }
+        button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-family: monospace;
+            background-color: black;
+            color: lime;
+            border: 2px solid lime;
+            cursor: pointer;
+        }
+        .dots {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+        .hidden {
+            display: none;
+        }
+        .congrats {
+            font-size: 3rem;
+            color: lime;
+            display: none;
+        }
+    </style>
+    <script>
+        let clickCount = 0;
+        function changeDotColor() {
+            let dots = document.querySelectorAll('.dot');
+            let input = document.querySelector('input');
+            let elementsToHide = document.querySelectorAll('.hideable');
+            let congratsMessage = document.querySelector('.congrats');
+            
+            if (input.value.trim().toUpperCase() === "DONT TRUST ANYONE") {
+                elementsToHide.forEach(el => el.classList.add('hidden'));
+                congratsMessage.style.display = 'block';
+                return;
+            }
+            
+            if (clickCount < dots.length) {
+                dots[clickCount].style.backgroundColor = 'red';
+                dots[clickCount].style.border = '2px solid red';
+                clickCount++;
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '[') {
+                location.reload();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="hideable">ITSY VTWUV GTEUTK</div>
+    <div class="input-container hideable">
+        <input type="text" placeholder="Digite aqui...">
+        <button onclick="changeDotColor()">ENVIAR</button>
+    </div>
+    <div class="dots hideable">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <div class="congrats">PARABÉNS JOGADOR</div>
+</body>
+</html>
